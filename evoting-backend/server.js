@@ -18,11 +18,18 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cors());
 
-// ✅ Morgan — logs all API hits
-app.use(morgan("combined")); 
-// you can also use "dev" if you want shorter logs
+// ✅ Allow all origins
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// Morgan — logs all API hits
+app.use(morgan("combined"));
 
 // Routes
 app.use("/api/auth", authRoutes);
