@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import morgan from "morgan";
 import connectDB from "./src/config/db.js";
 
 // Routes
@@ -18,6 +19,10 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors());
+
+// ✅ Morgan — logs all API hits
+app.use(morgan("combined")); 
+// you can also use "dev" if you want shorter logs
 
 // Routes
 app.use("/api/auth", authRoutes);
