@@ -2,7 +2,15 @@ import mongoose from "mongoose";
 
 const userSchemna = new mongoose.Schema(
   {
-    name: {
+    fName: {
+      type: String,
+      required: true,
+    },
+    lName: {
+      type: String,
+      required: true,
+    },
+    username: {
       type: String,
       required: true,
     },
@@ -14,6 +22,10 @@ const userSchemna = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isAdmin : {
+      type: Boolean,
+      default: false,
+    }
   },
   { timestamps: true }
 );
