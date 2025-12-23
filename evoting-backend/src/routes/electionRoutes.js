@@ -9,7 +9,7 @@ const router = express.Router();
 /**
  * CREATE election (ADMIN ONLY)
  */
-router.post("/create", auth, adminOnly, async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const { name, candidates, electionInfo, isActive } = req.body;
 
@@ -21,6 +21,7 @@ router.post("/create", auth, adminOnly, async (req, res) => {
       createdBy: req.user.id,
     });
 
+    console.log("runnnnnnnnnnn", election);
     await election.save();
 
     res.status(201).json({
@@ -28,7 +29,11 @@ router.post("/create", auth, adminOnly, async (req, res) => {
       election,
     });
   } catch (error) {
-    res.status(500).json({ msg: "Server error" });
+    console.error("Election save error:", error);
+    res.status(500).json({
+      msg: "Server error",
+      error: error.message,
+    });
   }
 });
 
