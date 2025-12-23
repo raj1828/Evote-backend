@@ -18,7 +18,7 @@ router.post("/create", async (req, res) => {
       candidates,
       electionInfo,
       isActive,
-      createdBy: req.user.id,
+      createdBy: "admin",
     });
 
     console.log("runnnnnnnnnnn", election);
