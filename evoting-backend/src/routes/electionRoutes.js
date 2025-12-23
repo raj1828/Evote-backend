@@ -25,7 +25,6 @@ router.post("/create", auth, adminOnly, async (req, res) => {
 
     res.status(201).json({
       msg: "Election created successfully",
-      election,
     });
   } catch (error) {
     res.status(500).json({ msg: "Server error" });
