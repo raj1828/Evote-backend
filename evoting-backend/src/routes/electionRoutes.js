@@ -88,7 +88,7 @@ router.delete("/delete/:id", auth, adminOnly, async (req, res) => {
 /**
  * GET all elections (ADMIN ONLY)
  */
-router.get("/", auth, adminOnly, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const elections = await Election.find().sort({ createdAt: -1 });
     res.status(200).json({ elections });
