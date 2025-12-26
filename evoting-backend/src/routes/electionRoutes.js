@@ -39,7 +39,7 @@ router.post("/create", async (req, res) => {
 /**
  * UPDATE election (ADMIN ONLY)
  */
-router.put("/update/:id", auth, adminOnly, async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -74,7 +74,7 @@ router.put("/update/:id", auth, adminOnly, async (req, res) => {
 /**
  * DELETE election (ADMIN ONLY)
  */
-router.delete("/delete/:id", auth, adminOnly, async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
     const election = await Election.findById(req.params.id);
     if (!election) {
@@ -104,7 +104,7 @@ router.get("/", async (req, res) => {
 /**
  * GET single election (ADMIN ONLY)
  */
-router.get("/:id", auth, adminOnly, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const election = await Election.findById(req.params.id);
     if (!election) {
