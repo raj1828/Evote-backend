@@ -22,27 +22,20 @@ const electionSchema = new mongoose.Schema(
 
     voters: [
       {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
+        user: mongoose.Schema.Types.ObjectId,
         candidateId: mongoose.Schema.Types.ObjectId,
       },
     ],
 
     isActive: { type: Boolean, default: true },
 
-    resultsLocked: {
-      type: Boolean,
-      default: false,
-    },
+    resultsLocked: { type: Boolean, default: false },
 
-    createdBy: {
-      type: String,
-      default: "admin",
-    },
+    createdBy: String,
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Election", electionSchema);
+// 🔥 THIS LINE PREVENTS OLD SCHEMA CACHE ISSUES
+export default mongoose.models.Election ||
+  mongoose.model("Election", electionSchema);
